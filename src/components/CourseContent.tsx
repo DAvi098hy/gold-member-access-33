@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -50,14 +51,14 @@ const coursePDFs: { [key: number]: PDF[] } = {
       id: 3,
       title: "Caderno de Atividades Grafismo Fonético",
       description: "Atividades práticas para desenvolvimento",
-      url: "#",
+      url: "https://drive.google.com/file/d/1DFsJqwLqUbcPZxcCHnhNg57oVvxT0Gry/preview",
       size: "5.2 MB"
     },
     {
       id: 4,
       title: "Modelo de Exercícios",
       description: "Templates para criar novos exercícios",
-      url: "#",
+      url: "https://drive.google.com/file/d/1-A7wxU_iYDFGgq-N2ZdKQs1V3XFaYLz3/preview",
       size: "3.4 MB"
     }
   ],
@@ -91,6 +92,7 @@ const coursePDFs: { [key: number]: PDF[] } = {
 export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps) => {
   const { toast } = useToast()
   const pdfs = coursePDFs[course.id] || []
+  const [selectedPdf, setSelectedPdf] = useState<PDF | null>(pdfs.length > 0 ? pdfs[0] : null)
 
   const handleDownload = (pdf: PDF) => {
     // Aqui você implementaria o download real do PDF
@@ -204,39 +206,80 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                {pdfs.length > 0 ? (
-                  pdfs.map((pdf) => (
-                    <div 
-                      key={pdf.id}
-                      className="p-4 border border-border/50 rounded-lg hover:bg-accent/50 transition-colors"
-                    >
-                      <div className="flex items-start justify-between">
-                        <div className="flex-1 space-y-1">
-                          <h4 className="font-medium text-sm">
+                {course.id === 2 ? (
+                  // Embedded PDF viewer for course 2
+                  <>
+                    {/* PDF Selector */}
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Selecionar PDF:</label>
+                      <div className="grid grid-cols-1 gap-2">
+                        {pdfs.map((pdf) => (
+                          <Button
+                            key={pdf.id}
+                            variant={selectedPdf?.id === pdf.id ? "default" : "outline"}
+                            size="sm"
+                            onClick={() => setSelectedPdf(pdf)}
+                            className="text-left justify-start"
+                          >
                             {pdf.title}
-                          </h4>
-                          <p className="text-xs text-muted-foreground">
-                            {pdf.description}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            Tamanho: {pdf.size}
-                          </p>
-                        </div>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleDownload(pdf)}
-                          className="ml-2 flex-shrink-0"
-                        >
-                          <Download className="w-3 h-3" />
-                        </Button>
+                          </Button>
+                        ))}
                       </div>
                     </div>
-                  ))
+                    
+                    {/* PDF Embed */}
+                    {selectedPdf && (
+                      <div className="space-y-3">
+                        <div className="text-sm">
+                          <h4 className="font-medium">{selectedPdf.title}</h4>
+                          <p className="text-muted-foreground">{selectedPdf.description}</p>
+                        </div>
+                        <iframe 
+                          src={selectedPdf.url}
+                          width="100%" 
+                          height="480" 
+                          className="border border-border/50 rounded-lg"
+                          allow="autoplay"
+                        />
+                      </div>
+                    )}
+                  </>
                 ) : (
-                  <p className="text-sm text-muted-foreground text-center py-4">
-                    Nenhum material disponível para esta aula.
-                  </p>
+                  // Regular download buttons for other courses
+                  pdfs.length > 0 ? (
+                    pdfs.map((pdf) => (
+                      <div 
+                        key={pdf.id}
+                        className="p-4 border border-border/50 rounded-lg hover:bg-accent/50 transition-colors"
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 space-y-1">
+                            <h4 className="font-medium text-sm">
+                              {pdf.title}
+                            </h4>
+                            <p className="text-xs text-muted-foreground">
+                              {pdf.description}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              Tamanho: {pdf.size}
+                            </p>
+                          </div>
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => handleDownload(pdf)}
+                            className="ml-2 flex-shrink-0"
+                          >
+                            <Download className="w-3 h-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-sm text-muted-foreground text-center py-4">
+                      Nenhum material disponível para esta aula.
+                    </p>
+                  )
                 )}
               </CardContent>
             </Card>
