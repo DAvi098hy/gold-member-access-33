@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { useAuth } from '@/hooks/useAuth'
-import { VideoPlayer } from './VideoPlayer'
+import { CourseContent } from './CourseContent'
 import { LogOut, Play, CheckCircle2 } from 'lucide-react'
 import courseHero from '@/assets/course-hero.jpg'
 
@@ -80,7 +80,7 @@ export const MemberArea = () => {
 
   if (selectedCourse) {
     return (
-      <VideoPlayer 
+      <CourseContent 
         course={selectedCourse} 
         onBack={() => setSelectedCourse(null)}
         onComplete={() => handleCourseComplete(selectedCourse.id)}

@@ -1,0 +1,279 @@
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { ArrowLeft, Download, CheckCircle2, FileText } from 'lucide-react'
+import { useToast } from '@/hooks/use-toast'
+
+interface Course {
+  id: number
+  title: string
+  videoUrl: string
+  thumbnail: string
+  description: string
+  completed: boolean
+}
+
+interface PDF {
+  id: number
+  title: string
+  description: string
+  url: string
+  size: string
+}
+
+interface CourseContentProps {
+  course: Course
+  onBack: () => void
+  onComplete: () => void
+}
+
+// PDFs disponíveis para download
+const coursePDFs: { [key: number]: PDF[] } = {
+  1: [
+    {
+      id: 1,
+      title: "Guia Completo do Checkout Próprio",
+      description: "Manual detalhado para criar seu sistema de checkout",
+      url: "#",
+      size: "2.3 MB"
+    },
+    {
+      id: 2,
+      title: "Checklist de Implementação",
+      description: "Lista de verificação para implementação correta",
+      url: "#",
+      size: "1.1 MB"
+    }
+  ],
+  2: [
+    {
+      id: 3,
+      title: "Caderno de Atividades Grafismo Fonético",
+      description: "Atividades práticas para desenvolvimento",
+      url: "#",
+      size: "5.2 MB"
+    },
+    {
+      id: 4,
+      title: "Modelo de Exercícios",
+      description: "Templates para criar novos exercícios",
+      url: "#",
+      size: "3.4 MB"
+    }
+  ],
+  3: [
+    {
+      id: 5,
+      title: "Tutorial de Deploy",
+      description: "Passo a passo para colocar no ar",
+      url: "#",
+      size: "1.8 MB"
+    }
+  ],
+  4: [
+    {
+      id: 6,
+      title: "Estratégias de OrderBumps",
+      description: "Como maximizar suas vendas com produtos adicionais",
+      url: "#",
+      size: "2.7 MB"
+    },
+    {
+      id: 7,
+      title: "Templates de Checkout",
+      description: "Modelos prontos para personalizar",
+      url: "#",
+      size: "4.1 MB"
+    }
+  ]
+}
+
+export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps) => {
+  const { toast } = useToast()
+  const pdfs = coursePDFs[course.id] || []
+
+  const handleDownload = (pdf: PDF) => {
+    // Aqui você implementaria o download real do PDF
+    toast({
+      title: "Download iniciado",
+      description: `Baixando: ${pdf.title}`,
+    })
+  }
+
+  const handleMarkComplete = () => {
+    onComplete()
+    toast({
+      title: "Aula concluída!",
+      description: "Parabéns por completar esta aula.",
+    })
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="border-b border-border/50 bg-card/30 backdrop-blur-md">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center space-x-4">
+            <Button 
+              variant="ghost" 
+              onClick={onBack}
+              className="flex items-center space-x-2"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Voltar</span>
+            </Button>
+            
+            <div className="flex-1">
+              <h1 className="text-xl font-bold text-foreground">
+                {course.title}
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Aula {course.id} - {course.description}
+              </p>
+            </div>
+
+            {course.completed && (
+              <Badge variant="default" className="bg-green-500/20 text-green-400 border-green-500/30">
+                <CheckCircle2 className="w-3 h-3 mr-1" />
+                Concluída
+              </Badge>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Conteúdo Principal */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Imagem da Aula */}
+            <Card className="glass-card">
+              <CardContent className="p-0">
+                <div className="relative">
+                  <img 
+                    src="/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"
+                    alt={course.title}
+                    className="w-full h-[400px] object-cover rounded-lg"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg" />
+                  
+                  {/* Overlay com informações */}
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h2 className="text-2xl font-bold text-white mb-2">
+                      {course.title}
+                    </h2>
+                    <p className="text-white/90 text-lg">
+                      {course.description}
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Botão de Conclusão */}
+            {!course.completed && (
+              <Card className="glass-card">
+                <CardContent className="p-6">
+                  <div className="text-center space-y-4">
+                    <h3 className="text-lg font-semibold">
+                      Pronto para marcar como concluída?
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Ao marcar esta aula como concluída, você avançará automaticamente para a próxima.
+                    </p>
+                    <Button 
+                      onClick={handleMarkComplete}
+                      variant="premium"
+                    >
+                      <CheckCircle2 className="w-4 h-4 mr-2" />
+                      Marcar como Concluída
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+
+          {/* Sidebar - PDFs para Download */}
+          <div className="space-y-6">
+            <Card className="glass-card">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <FileText className="w-5 h-5" />
+                  <span>Materiais da Aula</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {pdfs.length > 0 ? (
+                  pdfs.map((pdf) => (
+                    <div 
+                      key={pdf.id}
+                      className="p-4 border border-border/50 rounded-lg hover:bg-accent/50 transition-colors"
+                    >
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1 space-y-1">
+                          <h4 className="font-medium text-sm">
+                            {pdf.title}
+                          </h4>
+                          <p className="text-xs text-muted-foreground">
+                            {pdf.description}
+                          </p>
+                          <p className="text-xs text-muted-foreground">
+                            Tamanho: {pdf.size}
+                          </p>
+                        </div>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDownload(pdf)}
+                          className="ml-2 flex-shrink-0"
+                        >
+                          <Download className="w-3 h-3" />
+                        </Button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Nenhum material disponível para esta aula.
+                  </p>
+                )}
+              </CardContent>
+            </Card>
+
+            {/* Informações Adicionais */}
+            <Card className="glass-card">
+              <CardHeader>
+                <CardTitle className="text-sm">Sobre esta Aula</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="text-sm">
+                  <span className="text-muted-foreground">Módulo:</span>
+                  <span className="ml-2 font-medium">Aula {course.id}</span>
+                </div>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">Status:</span>
+                  <span className="ml-2">
+                    {course.completed ? (
+                      <Badge variant="default" className="bg-green-500/20 text-green-400 border-green-500/30">
+                        Concluída
+                      </Badge>
+                    ) : (
+                      <Badge variant="secondary">
+                        Em Progresso
+                      </Badge>
+                    )}
+                  </span>
+                </div>
+                <div className="text-sm">
+                  <span className="text-muted-foreground">Materiais:</span>
+                  <span className="ml-2 font-medium">{pdfs.length} PDF(s)</span>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
