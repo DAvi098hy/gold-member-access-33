@@ -144,110 +144,110 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
         </div>
       </header>
 
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Conteúdo Principal */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Imagem da Aula */}
+      <div className="container mx-auto px-4 py-8 space-y-8">
+        {/* Conteúdo Principal */}
+        <div className="space-y-6">
+          {/* Imagem da Aula */}
+          <Card className="glass-card">
+            <CardContent className="p-0">
+              <div className="relative">
+                <img 
+                  src="/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"
+                  alt={course.title}
+                  className="w-full h-[400px] object-cover rounded-lg"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg" />
+                
+                {/* Overlay com informações */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    {course.title}
+                  </h2>
+                  <p className="text-white/90 text-lg">
+                    {course.description}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Botão de Conclusão */}
+          {!course.completed && (
             <Card className="glass-card">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img 
-                    src="/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"
-                    alt={course.title}
-                    className="w-full h-[400px] object-cover rounded-lg"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg" />
-                  
-                  {/* Overlay com informações */}
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h2 className="text-2xl font-bold text-white mb-2">
-                      {course.title}
-                    </h2>
-                    <p className="text-white/90 text-lg">
-                      {course.description}
-                    </p>
-                  </div>
+              <CardContent className="p-6">
+                <div className="text-center space-y-4">
+                  <h3 className="text-lg font-semibold">
+                    Pronto para marcar como concluída?
+                  </h3>
+                  <p className="text-muted-foreground">
+                    Ao marcar esta aula como concluída, você avançará automaticamente para a próxima.
+                  </p>
+                  <Button 
+                    onClick={handleMarkComplete}
+                    variant="premium"
+                  >
+                    <CheckCircle2 className="w-4 h-4 mr-2" />
+                    Marcar como Concluída
+                  </Button>
                 </div>
               </CardContent>
             </Card>
+          )}
+        </div>
 
-            {/* Botão de Conclusão */}
-            {!course.completed && (
-              <Card className="glass-card">
-                <CardContent className="p-6">
-                  <div className="text-center space-y-4">
-                    <h3 className="text-lg font-semibold">
-                      Pronto para marcar como concluída?
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Ao marcar esta aula como concluída, você avançará automaticamente para a próxima.
-                    </p>
-                    <Button 
-                      onClick={handleMarkComplete}
-                      variant="premium"
-                    >
-                      <CheckCircle2 className="w-4 h-4 mr-2" />
-                      Marcar como Concluída
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-          </div>
-
-          {/* Sidebar - PDFs para Download */}
-          <div className="space-y-6">
-            <Card className="glass-card">
-              <CardHeader>
-                <CardTitle className="flex items-center space-x-2">
-                  <FileText className="w-5 h-5" />
-                  <span>Materiais da Aula</span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {course.id === 2 ? (
-                  // Embedded PDF viewer for course 2
-                  <>
-                    {/* PDF Selector */}
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium">Selecionar PDF:</label>
-                      <div className="grid grid-cols-1 gap-2">
-                        {pdfs.map((pdf) => (
-                          <Button
-                            key={pdf.id}
-                            variant={selectedPdf?.id === pdf.id ? "default" : "outline"}
-                            size="sm"
-                            onClick={() => setSelectedPdf(pdf)}
-                            className="text-left justify-start"
-                          >
-                            {pdf.title}
-                          </Button>
-                        ))}
-                      </div>
+        {/* Materiais da Aula - Agora embaixo */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <Card className="glass-card lg:col-span-2">
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <FileText className="w-5 h-5" />
+                <span>Materiais da Aula</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {course.id === 2 ? (
+                // Embedded PDF viewer for course 2
+                <>
+                  {/* PDF Selector */}
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Selecionar PDF:</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {pdfs.map((pdf) => (
+                        <Button
+                          key={pdf.id}
+                          variant={selectedPdf?.id === pdf.id ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedPdf(pdf)}
+                          className="text-left justify-start"
+                        >
+                          {pdf.title}
+                        </Button>
+                      ))}
                     </div>
-                    
-                    {/* PDF Embed */}
-                    {selectedPdf && (
-                      <div className="space-y-3">
-                        <div className="text-sm">
-                          <h4 className="font-medium">{selectedPdf.title}</h4>
-                          <p className="text-muted-foreground">{selectedPdf.description}</p>
-                        </div>
-                        <iframe 
-                          src={selectedPdf.url}
-                          width="100%" 
-                          height="480" 
-                          className="border border-border/50 rounded-lg"
-                          allow="autoplay"
-                        />
+                  </div>
+                  
+                  {/* PDF Embed */}
+                  {selectedPdf && (
+                    <div className="space-y-3">
+                      <div className="text-sm">
+                        <h4 className="font-medium">{selectedPdf.title}</h4>
+                        <p className="text-muted-foreground">{selectedPdf.description}</p>
                       </div>
-                    )}
-                  </>
-                ) : (
-                  // Regular download buttons for other courses
-                  pdfs.length > 0 ? (
-                    pdfs.map((pdf) => (
+                      <iframe 
+                        src={selectedPdf.url}
+                        width="100%" 
+                        height="600" 
+                        className="border border-border/50 rounded-lg"
+                        allow="autoplay"
+                      />
+                    </div>
+                  )}
+                </>
+              ) : (
+                // Regular download buttons for other courses
+                pdfs.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {pdfs.map((pdf) => (
                       <div 
                         key={pdf.id}
                         className="p-4 border border-border/50 rounded-lg hover:bg-accent/50 transition-colors"
@@ -274,47 +274,47 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
                           </Button>
                         </div>
                       </div>
-                    ))
-                  ) : (
-                    <p className="text-sm text-muted-foreground text-center py-4">
-                      Nenhum material disponível para esta aula.
-                    </p>
-                  )
-                )}
-              </CardContent>
-            </Card>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-sm text-muted-foreground text-center py-4">
+                    Nenhum material disponível para esta aula.
+                  </p>
+                )
+              )}
+            </CardContent>
+          </Card>
 
-            {/* Informações Adicionais */}
-            <Card className="glass-card">
-              <CardHeader>
-                <CardTitle className="text-sm">Sobre esta Aula</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="text-sm">
-                  <span className="text-muted-foreground">Módulo:</span>
-                  <span className="ml-2 font-medium">Aula {course.id}</span>
-                </div>
-                <div className="text-sm">
-                  <span className="text-muted-foreground">Status:</span>
-                  <span className="ml-2">
-                    {course.completed ? (
-                      <Badge variant="default" className="bg-green-500/20 text-green-400 border-green-500/30">
-                        Concluída
-                      </Badge>
-                    ) : (
-                      <Badge variant="secondary">
-                        Em Progresso
-                      </Badge>
-                    )}
-                  </span>
-                </div>
-                <div className="text-sm">
-                  <span className="text-muted-foreground">Materiais:</span>
-                  <span className="ml-2 font-medium">{pdfs.length} PDF(s)</span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          {/* Informações Adicionais */}
+          <Card className="glass-card">
+            <CardHeader>
+              <CardTitle className="text-sm">Sobre esta Aula</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="text-sm">
+                <span className="text-muted-foreground">Módulo:</span>
+                <span className="ml-2 font-medium">Aula {course.id}</span>
+              </div>
+              <div className="text-sm">
+                <span className="text-muted-foreground">Status:</span>
+                <span className="ml-2">
+                  {course.completed ? (
+                    <Badge variant="default" className="bg-green-500/20 text-green-400 border-green-500/30">
+                      Concluída
+                    </Badge>
+                  ) : (
+                    <Badge variant="secondary">
+                      Em Progresso
+                    </Badge>
+                  )}
+                </span>
+              </div>
+              <div className="text-sm">
+                <span className="text-muted-foreground">Materiais:</span>
+                <span className="ml-2 font-medium">{pdfs.length} PDF(s)</span>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </div>
