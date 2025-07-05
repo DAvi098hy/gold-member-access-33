@@ -35,6 +35,8 @@ export const useAuth = () => {
       setUser(userData)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(userData))
       console.log('User data saved to localStorage')
+      console.log('Updated user state:', userData)
+      console.log('isAuthenticated should now be:', !!userData?.isAuthenticated)
       return true
     }
     console.log('Login validation failed')
@@ -46,11 +48,14 @@ export const useAuth = () => {
     localStorage.removeItem(STORAGE_KEY)
   }
 
+  const isAuthenticated = !!user?.isAuthenticated
+  console.log('useAuth hook state:', { user, loading, isAuthenticated })
+
   return {
     user,
     loading,
     login,
     logout,
-    isAuthenticated: !!user?.isAuthenticated
+    isAuthenticated
   }
 }

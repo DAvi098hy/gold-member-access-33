@@ -6,6 +6,7 @@ const Index = () => {
   const { isAuthenticated, loading } = useAuth()
   
   console.log('Index component - State:', { isAuthenticated, loading })
+  console.log('Index component re-render - will show:', isAuthenticated ? 'MemberArea' : 'Login')
 
   if (loading) {
     console.log('Showing loading screen')
