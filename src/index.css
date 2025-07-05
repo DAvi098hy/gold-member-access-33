@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gold Member Access - Premium Course Platform Design System
+All colors MUST be HSL. Gradient system: Yellow to Black for high-tech premium feel
+*/
+
+@layer base {
+  :root {
+    /* Base Premium Theme - Dark with Gold accents */
+    --background: 0 0% 5%;
+    --foreground: 50 100% 85%;
+
+    /* Cards with glass effect */
+    --card: 0 0% 8%;
+    --card-foreground: 50 100% 90%;
+
+    /* Popover styling */
+    --popover: 0 0% 10%;
+    --popover-foreground: 50 100% 85%;
+
+    /* Primary Gold Theme */
+    --primary: 50 100% 60%;
+    --primary-foreground: 0 0% 5%;
+
+    /* Secondary with subtle gold tint */
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 50 100% 85%;
+
+    /* Muted elements */
+    --muted: 0 0% 12%;
+    --muted-foreground: 50 20% 65%;
+
+    /* Accent gold */
+    --accent: 50 100% 50%;
+    --accent-foreground: 0 0% 5%;
+
+    /* Destructive states */
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Borders and inputs */
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 50 100% 60%;
+
+    /* Rounded corners */
+    --radius: 0.75rem;
+
+    /* Premium gradients for high-tech feel */
+    --gradient-primary: linear-gradient(135deg, hsl(50, 100%, 60%), hsl(45, 100%, 50%), hsl(0, 0%, 10%));
+    --gradient-card: linear-gradient(135deg, hsl(0, 0%, 12%) 0%, hsl(0, 0%, 8%) 100%);
+    --gradient-hover: linear-gradient(135deg, hsl(50, 100%, 65%), hsl(45, 100%, 55%));
+    --gradient-glass: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
+
+    /* Premium shadows */
+    --shadow-gold: 0 10px 30px -5px hsl(50 100% 60% / 0.3);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 40px hsl(50 100% 60% / 0.4);
+
+    /* Animation timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Premium glass effect cards */
+  .glass-card {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(50 100% 60% / 0.2);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Gold gradient buttons */
+  .btn-premium {
+    background: var(--gradient-primary);
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-gold);
+  }
+
+  .btn-premium:hover {
+    background: var(--gradient-hover);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  /* Animated underline effect */
+  .premium-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .premium-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  .premium-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  /* Course card hover effects */
+  .course-card {
+    background: var(--gradient-card);
+    border: 1px solid hsl(50 100% 60% / 0.1);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsl(50 100% 60% / 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .course-card:hover::before {
+    left: 100%;
+  }
+
+  .course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: hsl(50 100% 60% / 0.3);
+  }
+}
