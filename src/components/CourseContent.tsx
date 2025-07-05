@@ -92,7 +92,7 @@ const coursePDFs: { [key: number]: PDF[] } = {
 export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps) => {
   const { toast } = useToast()
   const pdfs = coursePDFs[course.id] || []
-  const [selectedPdf, setSelectedPdf] = useState<PDF | null>(pdfs.length > 0 ? pdfs[0] : null)
+  const [selectedPdf, setSelectedPdf] = useState<PDF | null>(null)
 
   const handleDownload = (pdf: PDF) => {
     // Aqui você implementaria o download real do PDF
@@ -170,29 +170,6 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
               </div>
             </CardContent>
           </Card>
-
-          {/* Botão de Conclusão */}
-          {!course.completed && (
-            <Card className="glass-card">
-              <CardContent className="p-6">
-                <div className="text-center space-y-4">
-                  <h3 className="text-lg font-semibold">
-                    Pronto para marcar como concluída?
-                  </h3>
-                  <p className="text-muted-foreground">
-                    Ao marcar esta aula como concluída, você avançará automaticamente para a próxima.
-                  </p>
-                  <Button 
-                    onClick={handleMarkComplete}
-                    variant="premium"
-                  >
-                    <CheckCircle2 className="w-4 h-4 mr-2" />
-                    Marcar como Concluída
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          )}
         </div>
 
         {/* Materiais da Aula - Agora embaixo */}
@@ -316,6 +293,29 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
             </CardContent>
           </Card>
         </div>
+
+        {/* Botão de Conclusão - Agora abaixo dos PDFs */}
+        {!course.completed && (
+          <Card className="glass-card">
+            <CardContent className="p-6">
+              <div className="text-center space-y-4">
+                <h3 className="text-lg font-semibold">
+                  Pronto para marcar como concluída?
+                </h3>
+                <p className="text-muted-foreground">
+                  Ao marcar esta aula como concluída, você avançará automaticamente para a próxima.
+                </p>
+                <Button 
+                  onClick={handleMarkComplete}
+                  variant="premium"
+                >
+                  <CheckCircle2 className="w-4 h-4 mr-2" />
+                  Marcar como Concluída
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
       </div>
     </div>
   )
