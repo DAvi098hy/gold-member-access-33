@@ -32,8 +32,14 @@ export const useAuth = () => {
     if (password === VALID_PASSWORD && email.includes('@')) {
       const userData = { email, isAuthenticated: true }
       console.log('Login validation passed, setting user:', userData)
+      
+      // Force immediate state update
       setUser(userData)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(userData))
+      
+      // Small delay to ensure state update is processed
+      await new Promise(resolve => setTimeout(resolve, 100))
+      
       console.log('User data saved to localStorage')
       console.log('Updated user state:', userData)
       console.log('isAuthenticated should now be:', !!userData?.isAuthenticated)
