@@ -33,16 +33,16 @@ export const useAuth = () => {
       const userData = { email, isAuthenticated: true }
       console.log('Login validation passed, setting user:', userData)
       
-      // Force immediate state update
-      setUser(userData)
+      // Save to localStorage first
       localStorage.setItem(STORAGE_KEY, JSON.stringify(userData))
       
-      // Small delay to ensure state update is processed
-      await new Promise(resolve => setTimeout(resolve, 100))
+      // Then update state using functional update to ensure it triggers re-render
+      setUser(prevUser => {
+        console.log('Setting user state from:', prevUser, 'to:', userData)
+        return userData
+      })
       
-      console.log('User data saved to localStorage')
-      console.log('Updated user state:', userData)
-      console.log('isAuthenticated should now be:', !!userData?.isAuthenticated)
+      console.log('User data saved and state updated')
       return true
     }
     console.log('Login validation failed')
