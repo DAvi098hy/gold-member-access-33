@@ -50,8 +50,14 @@ export const useAuth = () => {
   }
 
   const logout = () => {
+    console.log('Logout function called')
+    console.log('Current user before logout:', user)
     setUser(null)
     localStorage.removeItem(STORAGE_KEY)
+    console.log('User logged out successfully')
+    
+    // Force a page reload to ensure clean state
+    window.location.reload()
   }
 
   const isAuthenticated = !!user?.isAuthenticated
