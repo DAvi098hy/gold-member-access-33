@@ -97,17 +97,73 @@ const coursePDFs: { [key: number]: PDF[] } = {
   5: [
     {
       id: 9,
-      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Letra Cursiva",
-      description: "Atividades práticas para desenvolvimento",
-      url: "https://drive.google.com/file/d/1fpwXF3ItkTWNJelS0RoylbDRGQ9dUhrw/preview",
-      size: "5.2 MB"
+      title: "BÔNUS - atividades_para_colorir",
+      description: "Atividades para colorir",
+      url: "https://drive.google.com/file/d/1F5AwfDDQbVXJnj3O448gkBV2S2sE3aCK/preview",
+      size: "2.1 MB"
     },
     {
       id: 10,
-      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Bastão",
-      description: "Templates para criar novos exercícios",
-      url: "https://drive.google.com/file/d/1GHQlE8SoOhQFQ4feBRCrZrtV0PEK8wzw/preview",
-      size: "3.4 MB"
+      title: "BÔNUS - formando palavras",
+      description: "Atividades de formação de palavras",
+      url: "https://drive.google.com/file/d/1c1ok9--xZICXde1iV-Ngd0_ZlmTRUbPS/preview",
+      size: "1.8 MB"
+    },
+    {
+      id: 11,
+      title: "BÔNUS - descobrindo_o_alfabeto",
+      description: "Descobrindo o alfabeto",
+      url: "https://drive.google.com/file/d/1IeDB63Tv9myZwxJODk-WiMgzCp4uDosH/preview",
+      size: "2.5 MB"
+    },
+    {
+      id: 12,
+      title: "BÔNUS - caderno_silabas_simples",
+      description: "Caderno de sílabas simples",
+      url: "https://drive.google.com/file/d/1aofgCnr3S3mlUXmK5VjpVUhSGmxr2S1Q/preview",
+      size: "3.2 MB"
+    },
+    {
+      id: 13,
+      title: "BÔNUS - caderno_alfabeto_tracado",
+      description: "Caderno de alfabeto tracejado",
+      url: "https://drive.google.com/file/d/1HDBhh7Tg4J0xti9wTJzGg0dM7ppXwxB_/preview",
+      size: "2.7 MB"
+    },
+    {
+      id: 14,
+      title: "BÔNUS - alfabeto ilustrado",
+      description: "Alfabeto com ilustrações",
+      url: "https://drive.google.com/file/d/1IOqYkt1EE_NDdXa69zXXD4xRzFz_FmJW/preview",
+      size: "3.1 MB"
+    },
+    {
+      id: 15,
+      title: "BÔNUS - alfabeto_com_relogio",
+      description: "Alfabeto com relógio",
+      url: "https://drive.google.com/file/d/1VZI8LaBq_cygh-Hs2tMGAr8YuHMZHMNm/preview",
+      size: "2.3 MB"
+    },
+    {
+      id: 16,
+      title: "BÔNUS - alfabeto_com_pintura",
+      description: "Alfabeto com pintura",
+      url: "https://drive.google.com/file/d/1EIWnB3C52S1qGrVE4G3lXh_GTDKbKzcb/preview",
+      size: "2.9 MB"
+    },
+    {
+      id: 17,
+      title: "BÔNUS - alfabeto_com_imagem",
+      description: "Alfabeto com imagens",
+      url: "https://drive.google.com/file/d/1p8kU2ZuNRd-X5bcz7PLbJmE3bhDR-0RS/preview",
+      size: "2.6 MB"
+    },
+    {
+      id: 18,
+      title: "BÔNUS - Alfabeto com carinhas",
+      description: "Alfabeto com carinhas",
+      url: "https://drive.google.com/file/d/1YRghmYMsu5FC2xbPH9pA9qFQOT_Hm1Im/preview",
+      size: "2.4 MB"
     }
   ]
 }
