@@ -159,7 +159,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
             <CardContent className="p-0">
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"
+                  src={course.id === 3 || course.id === 4 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
                   alt={course.title}
                   className="w-full h-[400px] object-cover rounded-lg"
                 />

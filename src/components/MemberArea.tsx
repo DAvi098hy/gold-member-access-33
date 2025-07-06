@@ -35,18 +35,18 @@ const courses: Course[] = [
   },
   {
     id: 3,
-    title: "Subindo seu Checkout",
+    title: "Caderno Atividades Grafismo Fonético Nível 2",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: courseHero,
-    description: "Passo a passo para colocar seu checkout no ar.",
+    thumbnail: "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png",
+    description: "Atividades práticas para desenvolvimento do grafismo fonético nível 2.",
     completed: false
   },
   {
     id: 4,
-    title: "Adicionando Produto, Editando Checkout e OrderBumps",
+    title: "Caderno Atividades Grafismo Fonético Nível 3",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",  
-    thumbnail: courseHero,
-    description: "Otimize suas vendas com produtos adicionais e customizações avançadas.",
+    thumbnail: "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png",
+    description: "Atividades práticas para desenvolvimento do grafismo fonético nível 3.",
     completed: false
   }
 ]
