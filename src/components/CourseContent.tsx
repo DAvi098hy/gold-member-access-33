@@ -191,18 +191,18 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
             <CardContent className="space-y-4">
               {(course.id === 2 || course.id === 3 || course.id === 4) ? (
                 // Embedded PDF viewer for course 2
-                <>
+                <div className="w-full">
                   {/* PDF Selector */}
-                  <div className="space-y-2">
+                  <div className="space-y-2 mb-4">
                     <label className="text-sm font-medium">Selecionar PDF:</label>
-                    <div className="grid grid-cols-1 gap-2">
+                    <div className="flex flex-col gap-2 w-full">
                       {pdfs.map((pdf) => (
                         <Button
                           key={pdf.id}
                           variant={selectedPdf?.id === pdf.id ? "default" : "outline"}
                           size="sm"
                           onClick={() => setSelectedPdf(pdf)}
-                          className="text-left justify-start"
+                          className="text-left justify-start w-full text-xs sm:text-sm px-3 py-2 h-auto whitespace-normal break-words"
                         >
                           {pdf.title}
                         </Button>
@@ -212,21 +212,23 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
                   
                   {/* PDF Embed */}
                   {selectedPdf && (
-                    <div className="space-y-3">
+                    <div className="space-y-3 w-full">
                       <div className="text-sm">
-                        <h4 className="font-medium">{selectedPdf.title}</h4>
-                        <p className="text-muted-foreground">{selectedPdf.description}</p>
+                        <h4 className="font-medium text-xs sm:text-sm break-words">{selectedPdf.title}</h4>
+                        <p className="text-muted-foreground text-xs">{selectedPdf.description}</p>
                       </div>
-                      <iframe 
-                        src={selectedPdf.url}
-                        width="100%" 
-                        height="600" 
-                        className="border border-border/50 rounded-lg"
-                        allow="autoplay"
-                      />
+                      <div className="w-full overflow-hidden">
+                        <iframe 
+                          src={selectedPdf.url}
+                          width="100%" 
+                          height="400"
+                          className="border border-border/50 rounded-lg w-full min-h-[300px] sm:min-h-[400px] md:min-h-[600px]"
+                          allow="autoplay"
+                        />
+                      </div>
                     </div>
                   )}
-                </>
+                </div>
               ) : (
                 // Regular download buttons for other courses
                 pdfs.length > 0 ? (
