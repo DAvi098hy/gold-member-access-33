@@ -188,7 +188,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
                   {/* PDF Selector */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium">Selecionar PDF:</label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 gap-2">
                       {pdfs.map((pdf) => (
                         <Button
                           key={pdf.id}
