@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -63,6 +63,38 @@ export const MemberArea = () => {
   const { user, logout } = useAuth()
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null)
   const [courseList, setCourseList] = useState(courses)
+
+  // Load progress from localStorage on component mount
+  useEffect(() => {
+    if (user?.email) {
+      const savedProgress = localStorage.getItem(`course-progress-${user.email}`)
+      if (savedProgress) {
+        try {
+          const progressData = JSON.parse(savedProgress)
+          setCourseList(prevCourses => 
+            prevCourses.map(course => ({
+              ...course,
+              completed: progressData.completedCourses?.includes(course.id) || false
+            }))
+          )
+        } catch (error) {
+          console.error('Error loading progress from localStorage:', error)
+        }
+      }
+    }
+  }, [user?.email])
+
+  // Save progress to localStorage whenever courseList changes
+  useEffect(() => {
+    if (user?.email) {
+      const completedCourses = courseList.filter(c => c.completed).map(c => c.id)
+      const progressData = {
+        completedCourses,
+        lastUpdated: new Date().toISOString()
+      }
+      localStorage.setItem(`course-progress-${user.email}`, JSON.stringify(progressData))
+    }
+  }, [courseList, user?.email])
 
   const handleCourseComplete = (courseId: number) => {
     // Find next course before updating state
