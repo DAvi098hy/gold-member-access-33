@@ -48,6 +48,12 @@ export const useAuth = () => {
       })
       
       console.log('User data saved and state updated')
+      
+      // Force page reload to ensure clean state transition
+      setTimeout(() => {
+        window.location.reload()
+      }, 500)
+      
       return true
     }
     console.log('Login validation failed')
