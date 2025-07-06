@@ -217,7 +217,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
                 <img 
                   src={course.id === 1 ? "/lovable-uploads/c30c78d8-0dc8-43d9-aded-8008219a6169.png" : course.id === 3 || course.id === 4 || course.id === 5 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
                   alt={course.title}
-                  className="w-full h-[400px] object-cover rounded-lg"
+                  className={`w-full rounded-lg ${course.id === 1 ? 'h-auto object-contain' : 'h-[400px] object-cover'}`}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent rounded-lg" />
                 
