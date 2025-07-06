@@ -65,26 +65,33 @@ const coursePDFs: { [key: number]: PDF[] } = {
   3: [
     {
       id: 5,
-      title: "Tutorial de Deploy",
-      description: "Passo a passo para colocar no ar",
-      url: "#",
-      size: "1.8 MB"
+      title: "Letra Cursiva",
+      description: "Atividades práticas para desenvolvimento",
+      url: "https://drive.google.com/file/d/1DFsJqwLqUbcPZxcCHnhNg57oVvxT0Gry/preview",
+      size: "5.2 MB"
+    },
+    {
+      id: 6,
+      title: "Bastão",
+      description: "Templates para criar novos exercícios",
+      url: "https://drive.google.com/file/d/1-A7wxU_iYDFGgq-N2ZdKQs1V3XFaYLz3/preview",
+      size: "3.4 MB"
     }
   ],
   4: [
     {
-      id: 6,
-      title: "Estratégias de OrderBumps",
-      description: "Como maximizar suas vendas com produtos adicionais",
-      url: "#",
-      size: "2.7 MB"
+      id: 7,
+      title: "Letra Cursiva",
+      description: "Atividades práticas para desenvolvimento",
+      url: "https://drive.google.com/file/d/1DFsJqwLqUbcPZxcCHnhNg57oVvxT0Gry/preview",
+      size: "5.2 MB"
     },
     {
-      id: 7,
-      title: "Templates de Checkout",
-      description: "Modelos prontos para personalizar",
-      url: "#",
-      size: "4.1 MB"
+      id: 8,
+      title: "Bastão",
+      description: "Templates para criar novos exercícios",
+      url: "https://drive.google.com/file/d/1-A7wxU_iYDFGgq-N2ZdKQs1V3XFaYLz3/preview",
+      size: "3.4 MB"
     }
   ]
 }
@@ -182,7 +189,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {course.id === 2 ? (
+              {(course.id === 2 || course.id === 3 || course.id === 4) ? (
                 // Embedded PDF viewer for course 2
                 <>
                   {/* PDF Selector */}
