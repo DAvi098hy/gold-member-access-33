@@ -19,9 +19,9 @@ interface Course {
 const courses: Course[] = [
   {
     id: 1,
-    title: "Introdução ao Checkout Próprio",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    thumbnail: courseHero,
+    title: "aula pratica",
+    videoUrl: "https://drive.google.com/file/d/1_hb_v4cc70tKg6gfkyijcrrQUr-ejDg0/preview",
+    thumbnail: "/lovable-uploads/c30c78d8-0dc8-43d9-aded-8008219a6169.png",
     description: "Aprenda os fundamentos para criar seu próprio sistema de checkout.",
     completed: false
   },

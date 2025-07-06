@@ -30,22 +30,6 @@ interface CourseContentProps {
 
 // PDFs disponíveis para download
 const coursePDFs: { [key: number]: PDF[] } = {
-  1: [
-    {
-      id: 1,
-      title: "Guia Completo do Checkout Próprio",
-      description: "Manual detalhado para criar seu sistema de checkout",
-      url: "#",
-      size: "2.3 MB"
-    },
-    {
-      id: 2,
-      title: "Checklist de Implementação",
-      description: "Lista de verificação para implementação correta",
-      url: "#",
-      size: "1.1 MB"
-    }
-  ],
   2: [
     {
       id: 3,
@@ -231,7 +215,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
             <CardContent className="p-0">
               <div className="relative">
                 <img 
-                  src={course.id === 3 || course.id === 4 || course.id === 5 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
+                  src={course.id === 1 ? "/lovable-uploads/c30c78d8-0dc8-43d9-aded-8008219a6169.png" : course.id === 3 || course.id === 4 || course.id === 5 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
                   alt={course.title}
                   className="w-full h-[400px] object-cover rounded-lg"
                 />
@@ -261,7 +245,26 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {(course.id === 2 || course.id === 3 || course.id === 4 || course.id === 5) ? (
+              {course.id === 1 ? (
+                // Video embed for course 1
+                <div className="w-full">
+                  <div className="space-y-3 w-full">
+                    <div className="text-sm">
+                      <h4 className="font-medium text-xs sm:text-sm break-words">Aula Prática</h4>
+                      <p className="text-muted-foreground text-xs">Vídeo demonstrativo da aula prática</p>
+                    </div>
+                    <div className="w-full overflow-hidden">
+                      <iframe 
+                        src={course.videoUrl}
+                        width="100%" 
+                        height="400"
+                        className="border border-border/50 rounded-lg w-full min-h-[300px] sm:min-h-[400px] md:min-h-[600px]"
+                        allow="autoplay"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (course.id === 2 || course.id === 3 || course.id === 4 || course.id === 5) ? (
                 // Embedded PDF viewer for course 2
                 <div className="w-full">
                   {/* PDF Selector */}
