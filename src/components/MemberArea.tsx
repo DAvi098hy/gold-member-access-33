@@ -48,6 +48,14 @@ const courses: Course[] = [
     thumbnail: "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png",
     description: "Atividades práticas para desenvolvimento do grafismo fonético nível 3.",
     completed: false
+  },
+  {
+    id: 5,
+    title: "Bônus",
+    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    thumbnail: "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png",
+    description: "Conteúdo bônus especial para complementar seu aprendizado.",
+    completed: false
   }
 ]
 

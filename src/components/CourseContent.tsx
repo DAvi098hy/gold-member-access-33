@@ -93,6 +93,22 @@ const coursePDFs: { [key: number]: PDF[] } = {
       url: "https://drive.google.com/file/d/17HvORDb4546oZ00qDtgjtE94q6_nRrer/preview",
       size: "3.4 MB"
     }
+  ],
+  5: [
+    {
+      id: 9,
+      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Letra Cursiva",
+      description: "Atividades práticas para desenvolvimento",
+      url: "https://drive.google.com/file/d/1fpwXF3ItkTWNJelS0RoylbDRGQ9dUhrw/preview",
+      size: "5.2 MB"
+    },
+    {
+      id: 10,
+      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Bastão",
+      description: "Templates para criar novos exercícios",
+      url: "https://drive.google.com/file/d/1GHQlE8SoOhQFQ4feBRCrZrtV0PEK8wzw/preview",
+      size: "3.4 MB"
+    }
   ]
 }
 
@@ -159,7 +175,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
             <CardContent className="p-0">
               <div className="relative">
                 <img 
-                  src={course.id === 3 || course.id === 4 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
+                  src={course.id === 3 || course.id === 4 || course.id === 5 ? "/lovable-uploads/0e6b7c1d-b227-42e5-9731-6fd403794507.png" : "/lovable-uploads/7a9eec2f-cb74-4d8b-8ca9-440cc38ccc25.png"}
                   alt={course.title}
                   className="w-full h-[400px] object-cover rounded-lg"
                 />
@@ -189,7 +205,7 @@ export const CourseContent = ({ course, onBack, onComplete }: CourseContentProps
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {(course.id === 2 || course.id === 3 || course.id === 4) ? (
+              {(course.id === 2 || course.id === 3 || course.id === 4 || course.id === 5) ? (
                 // Embedded PDF viewer for course 2
                 <div className="w-full">
                   {/* PDF Selector */}
