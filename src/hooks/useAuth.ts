@@ -13,16 +13,21 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    console.log('useAuth useEffect - checking localStorage')
     const stored = localStorage.getItem(STORAGE_KEY)
+    console.log('Stored data:', stored)
     if (stored) {
       try {
         const parsedUser = JSON.parse(stored)
+        console.log('Parsed user from localStorage:', parsedUser)
         setUser(parsedUser)
       } catch (error) {
+        console.error('Error parsing stored user:', error)
         localStorage.removeItem(STORAGE_KEY)
       }
     }
     setLoading(false)
+    console.log('useAuth initialization complete')
   }, [])
 
   const login = async (email: string, password: string): Promise<boolean> => {
@@ -62,6 +67,7 @@ export const useAuth = () => {
 
   const isAuthenticated = !!user?.isAuthenticated
   console.log('useAuth hook state:', { user, loading, isAuthenticated })
+  console.log('isAuthenticated calculation:', !!user, user?.isAuthenticated, isAuthenticated)
 
   return {
     user,

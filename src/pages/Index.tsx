@@ -3,9 +3,9 @@ import { Login } from '@/components/Login'
 import { MemberArea } from '@/components/MemberArea'
 
 const Index = () => {
-  const { isAuthenticated, loading } = useAuth()
+  const { isAuthenticated, loading, user } = useAuth()
   
-  console.log('Index component - State:', { isAuthenticated, loading })
+  console.log('Index component - State:', { isAuthenticated, loading, user })
   console.log('Index component re-render - will show:', isAuthenticated ? 'MemberArea' : 'Login')
 
   if (loading) {
@@ -20,6 +20,7 @@ const Index = () => {
     )
   }
 
+  console.log('Final render decision - isAuthenticated:', isAuthenticated)
   console.log('Rendering based on authentication:', isAuthenticated ? 'MemberArea' : 'Login')
   return isAuthenticated ? <MemberArea /> : <Login />
 }
