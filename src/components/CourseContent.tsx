@@ -65,16 +65,16 @@ const coursePDFs: { [key: number]: PDF[] } = {
   3: [
     {
       id: 5,
-      title: "Letra Cursiva",
+      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Letra Cursiva",
       description: "Atividades práticas para desenvolvimento",
-      url: "https://drive.google.com/file/d/1DFsJqwLqUbcPZxcCHnhNg57oVvxT0Gry/preview",
+      url: "https://drive.google.com/file/d/1fpwXF3ItkTWNJelS0RoylbDRGQ9dUhrw/preview",
       size: "5.2 MB"
     },
     {
       id: 6,
-      title: "Bastão",
+      title: "Caderno de Atividades - Grafismos Fonéticos Nivel 2 - Bastão",
       description: "Templates para criar novos exercícios",
-      url: "https://drive.google.com/file/d/1-A7wxU_iYDFGgq-N2ZdKQs1V3XFaYLz3/preview",
+      url: "https://drive.google.com/file/d/1GHQlE8SoOhQFQ4feBRCrZrtV0PEK8wzw/preview",
       size: "3.4 MB"
     }
   ],
